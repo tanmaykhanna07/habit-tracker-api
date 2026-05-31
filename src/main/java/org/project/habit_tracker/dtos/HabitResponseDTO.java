@@ -3,6 +3,8 @@ package org.project.habit_tracker.dtos;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.time.LocalDate;
+
 public class HabitResponseDTO {
     @NotNull
     private Integer habitId;
@@ -10,13 +12,22 @@ public class HabitResponseDTO {
     private String name;
     private String desc;
     @NotBlank
-    private String username;
+    private LocalDate dateCreated;
 
-    public HabitResponseDTO(Integer habitId, String name, String desc, String username) {
+
+    public HabitResponseDTO(Integer habitId, String name, String desc,LocalDate dateCreated) {
         this.habitId = habitId;
         this.name = name;
         this.desc = desc;
-        this.username = username;
+        this.dateCreated = dateCreated;
+    }
+
+    public LocalDate getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(LocalDate dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
     public Integer getHabitId() {
@@ -33,14 +44,6 @@ public class HabitResponseDTO {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getDesc() {

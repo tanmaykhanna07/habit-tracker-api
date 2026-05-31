@@ -6,13 +6,10 @@ public class HabitRequestDTO {
     @NotBlank
     private String name;
     private String desc;
-    @NotBlank
-    private String username;
 
-    public HabitRequestDTO(String name, String desc, String username) {
+    public HabitRequestDTO(String name, String desc) {
         this.name = name;
         this.desc = desc;
-        this.username = username;
     }
 
     public String getName() {
@@ -29,13 +26,5 @@ public class HabitRequestDTO {
 
     public void setDesc(String desc) {
         this.desc = desc;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 }

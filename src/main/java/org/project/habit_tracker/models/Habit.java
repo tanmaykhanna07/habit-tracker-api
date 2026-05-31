@@ -2,6 +2,7 @@ package org.project.habit_tracker.models;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -17,9 +18,13 @@ public class Habit {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "date_created")
+    private LocalDate dateCreated;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private Users user;
+
 
     @OneToMany(mappedBy = "habit", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<DailyLog> logs;
@@ -65,5 +70,13 @@ public class Habit {
 
     public void setLogs(List<DailyLog> logs) {
         this.logs = logs;
+    }
+
+    public LocalDate getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(LocalDate dateCreated) {
+        this.dateCreated = dateCreated;
     }
 }
