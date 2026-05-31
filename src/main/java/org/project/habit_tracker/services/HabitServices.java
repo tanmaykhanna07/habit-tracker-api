@@ -2,6 +2,7 @@ package org.project.habit_tracker.services;
 
 import org.project.habit_tracker.dtos.HabitRequestDTO;
 import org.project.habit_tracker.dtos.HabitResponseDTO;
+import org.project.habit_tracker.exceptions.ResourceNotFoundException;
 import org.project.habit_tracker.models.Habit;
 import org.project.habit_tracker.repository.HabitRepository;
 import org.project.habit_tracker.repository.UserRepository;
@@ -57,5 +58,15 @@ public class HabitServices {
 
     public void deleteHabits() {
         habitRepository.deleteAll();
+    }
+
+    public HabitResponseDTO updateHabitById(Integer id, HabitRequestDTO incomingRequestDTO) {
+        Habit oldHabit = habitRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Habit not found")
+        );
+        oldHabit.setName(incomingRequestDTO.getName());
+        oldHabit.setDescription(incomingRequestDTO.getDesc());
+        Habit savedHabit = habitRepository.save(oldHabit);
+        return convertToDTO(savedHabit);
     }
 }

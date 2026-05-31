@@ -30,19 +30,23 @@ public class HabitController {
         return habitServices.getHabitById(id);
     }
 
-    @GetMapping("/habit/all")
+    @GetMapping("/habits")
     public List<HabitResponseDTO> getAllHabits(){
         return habitServices.getAllHabits();
     }
 
-    @DeleteMapping("/delete/habit/{id}")
+    @DeleteMapping("/habit/{id}")
     public void deleteHabitById(@PathVariable Integer id){
         habitServices.deleteHabitById(id);
     }
 
-    @DeleteMapping("/delete/habits")
+    @DeleteMapping("/habits")
     public void deleteAllHabits(){
         habitServices.deleteHabits();
+    }
+    @PutMapping("/habit/{id}")
+    public HabitResponseDTO updateHabitById(@PathVariable Integer id, @RequestBody HabitRequestDTO incomingRequestDTO){
+        return habitServices.updateHabitById(id, incomingRequestDTO);
     }
 
 }
