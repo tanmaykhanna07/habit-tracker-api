@@ -3,6 +3,7 @@ package org.project.habit_tracker.models;
 import jakarta.persistence.*;
 import org.project.habit_tracker.enums.Status;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -13,7 +14,7 @@ public class DailyLog {
     private Integer logId;
 
     @Column(name = "date")
-    private Date date;
+    private LocalDate date;
 
     @Column(name = "status")
     private Status status;
@@ -41,11 +42,11 @@ public class DailyLog {
         this.logId = logId;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
