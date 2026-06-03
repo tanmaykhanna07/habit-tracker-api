@@ -28,6 +28,10 @@ public class LogServices {
                 () -> new ResourceNotFoundException("Habit not found")
         );
         DailyLog log = logRepository.getDailyLogByHabit(habit);
+        if(logRepository.getDailyLogByHabit(habit) == null){
+            log = new DailyLog();
+        }
+
         log.setStatus(Status.COMPLETED);
         log.setDate(LocalDate.now());
         DailyLog savedLog = logRepository.save(log);
@@ -38,8 +42,7 @@ public class LogServices {
         return new LogResponseDTO(
                 log.getLogId(),
                 log.getDate(),
-                log.getStatus(),
-                log.getHabit().getHabitId()
+                log.getStatus()
         );
     }
 

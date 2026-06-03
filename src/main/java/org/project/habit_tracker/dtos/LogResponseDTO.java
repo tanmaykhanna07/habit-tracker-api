@@ -10,11 +10,10 @@ public class LogResponseDTO {
     private Status status;
     private Integer habitId;
 
-    public LogResponseDTO(Integer logId, LocalDate date, Status status, Integer habitId) {
+    public LogResponseDTO(Integer logId, LocalDate date, Status status) {
         this.logId = logId;
         this.date = date;
         this.status = status;
-        this.habitId = habitId;
     }
 
     public Integer getLogId() {
@@ -41,11 +40,4 @@ public class LogResponseDTO {
         this.status = status;
     }
 
-    public Integer getHabitId() {
-        return habitId;
-    }
-
-    public void setHabitId(Integer habitId) {
-        this.habitId = habitId;
-    }
 }
