@@ -40,8 +40,7 @@ public class UserServices {
     private UserResponseDTO convertToDTO(Users newUser){
         return new UserResponseDTO(
                 newUser.getId(),
-                newUser.getUsername(),
-                newUser.getPassword()
+                newUser.getUsername()
         );
     }
 }

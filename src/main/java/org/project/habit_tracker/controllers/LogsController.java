@@ -1,9 +1,11 @@
 package org.project.habit_tracker.controllers;
 
 import org.project.habit_tracker.dtos.LogResponseDTO;
+import org.project.habit_tracker.models.Habit;
 import org.project.habit_tracker.services.LogServices;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -22,8 +24,8 @@ public class LogsController {
     }
 
     @GetMapping("log/completed")
-    public List<LogResponseDTO> findAllCompletedDates(){
-        return logServices.findAllCompletedDates();
+    public List<LogResponseDTO> findAllCompletedDates( Integer habitId){
+        return logServices.findAllCompletedDates(habitId);
 
     }
 }

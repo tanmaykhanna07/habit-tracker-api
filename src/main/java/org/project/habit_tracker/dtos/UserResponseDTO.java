@@ -8,13 +8,10 @@ public class UserResponseDTO {
     private Integer id;
     @NotBlank
     private String username;
-    @NotBlank
-    private String password;
 
-    public UserResponseDTO(Integer id, String username, String password) {
+    public UserResponseDTO(Integer id, String username) {
         this.id = id;
         this.username = username;
-        this.password = password;
     }
 
     public Integer getId() {
@@ -31,13 +28,5 @@ public class UserResponseDTO {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }

@@ -7,6 +7,7 @@ import org.project.habit_tracker.services.HabitServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -21,8 +22,8 @@ public class HabitController {
     }
 
     @PostMapping("/habit")
-    public HabitResponseDTO addHabit(@Valid @RequestBody HabitRequestDTO requestDTO){
-        return habitServices.addHabit(requestDTO);
+    public HabitResponseDTO addHabit(@Valid @RequestBody HabitRequestDTO requestDTO, Principal principal){
+        return habitServices.addHabit(requestDTO, principal.getName());
     }
 
     @GetMapping("/habit/{id}")
@@ -31,8 +32,8 @@ public class HabitController {
     }
 
     @GetMapping("/habits")
-    public List<HabitResponseDTO> getAllHabits(){
-        return habitServices.getAllHabits();
+    public List<HabitResponseDTO> getAllHabits(Principal principal){
+        return habitServices.getAllHabits(principal.getName());
     }
 
     @DeleteMapping("/habit/{id}")

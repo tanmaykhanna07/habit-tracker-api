@@ -27,13 +27,16 @@ public class LogServices {
         Habit habit = habitRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Habit not found")
         );
-        DailyLog log = logRepository.getDailyLogByHabit(habit);
-        if(logRepository.getDailyLogByHabit(habit) == null){
-            log = new DailyLog();
+
+        DailyLog existingLog = logRepository.getDailyLogByHabitAndDate(habit, LocalDate.now());
+        if(existingLog!= null){
+            return convertToDTO(existingLog);
         }
+        DailyLog log = new DailyLog();
 
         log.setStatus(Status.COMPLETED);
         log.setDate(LocalDate.now());
+        log.setHabit(habit);
         DailyLog savedLog = logRepository.save(log);
         return convertToDTO(savedLog);
     }
@@ -46,10 +49,11 @@ public class LogServices {
         );
     }
 
-    public List<LogResponseDTO> findAllCompletedDates() {
-        List<DailyLog> logs = logRepository.getDailyLogByStatus(Status.COMPLETED);
+    public List<LogResponseDTO> findAllCompletedDates(Integer habitId) {
+        Habit habit = habitRepository.getHabitByHabitId(habitId);
+        List<DailyLog> logs = logRepository.getDailyLogByStatusAndHabit(Status.COMPLETED,habit);
         return logs.stream()
-                .map(log -> convertToDTO(log))
+                .map(this::convertToDTO)
                 .collect(Collectors.toList());
     }
 }
