@@ -38,6 +38,7 @@ public class HabitController {
 
     @DeleteMapping("/habit/{id}")
     public void deleteHabitById(@PathVariable Integer id){
+
         habitServices.deleteHabitById(id);
     }
 
