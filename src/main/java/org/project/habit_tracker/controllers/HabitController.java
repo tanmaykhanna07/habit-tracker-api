@@ -45,7 +45,7 @@ public class HabitController {
     public void deleteAllHabits(){
         habitServices.deleteHabits();
     }
-    @PutMapping("/habit/{id}")
+    @PutMapping("/habit/{id}/")
     public HabitResponseDTO updateHabitById(@PathVariable Integer id, @RequestBody HabitRequestDTO incomingRequestDTO){
         return habitServices.updateHabitById(id, incomingRequestDTO);
     }
